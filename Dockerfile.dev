@@ -1,0 +1,20 @@
+#the base image
+FROM node:14.8.0-alpine
+
+#working directory-the folder from which the docker starts
+WORKDIR /client
+
+#COPY <NEEDED_PATH> <DESTINATION_PATH>
+#copy that file and paste it in the root directory
+#easier to execute npm commands
+COPY ./package.json ./
+
+#because we copied the package.json npm install will
+#automatically install everything in the dependencies section of the file
+RUN npm install
+
+#copy everything to this directory
+COPY . .
+
+#an array of the command words in yaml
+CMD ["npm", "start"]

@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+#deploying the server to docker so the client can run it first
+#for production only
+  server:
+    image: cookiemonster073/server
+    ports:
+      - "5000:5000"
+    environment:
+      - "MONGO_URI=${MONGO_URI}"
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      #context= workdir
+      context: ./
+    #creating a dependency for the client service
+    #this service cannot run without the server service running first
+    depends_on:
+      - server
+    volumes:
+      #copying necessary files to the workdir
+      - ./node_modules:/client/node_modules
+      - ./:/client
+    stdin_open: true
+    ports:
+      - "3000:3000"
