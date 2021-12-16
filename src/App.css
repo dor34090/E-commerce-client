@@ -39,6 +39,13 @@ body {
   color: #333;
 }
 
+#root {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
 a {
   color: var(--primary-color);
   text-decoration: none;
@@ -62,6 +69,11 @@ img {
   margin-bottom: 3rem;
 }
 
+.wrapper-container {
+  height: calc(100% - 8vh);
+  margin-top: 8vh;
+}
+
 /* Text Styles*/
 .x-large {
   font-size: 4rem;
@@ -78,6 +90,10 @@ img {
 .lead {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.lead i {
+  margin-right: 5px;
 }
 
 .text-center {
@@ -340,12 +356,12 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
-  opacity: 0.9;
+  height: 8vh;
 }
 
 .main-navbar ul {
   display: flex;
+  margin: initial;
 }
 
 .main-navbar a {
@@ -368,6 +384,10 @@ button {
   position: relative;
   background: url('/assets/images/eshop.jpg') no-repeat center center/cover;
   height: 60vh;
+}
+
+.main-navbar h1 {
+  margin: initial;
 }
 
 .landing-inner {
@@ -570,4 +590,107 @@ button {
 
 .social_icons{
 margin: 10px;
+}
+
+.ball-1 {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -120px;
+  left: -125px;
+  background-color: rgb(248, 68, 68);
+}
+
+.ball-2 {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -120px;
+  right: -125px;
+  background-color: rgb(248, 68, 233);
+}
+
+.ball-3 {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  position: absolute;
+  top: -120px;
+  left: -125px;
+  background-color: rgb(68, 248, 92);
+}
+
+.ball-4 {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  position: absolute;
+  top: -120px;
+  right: -125px;
+  background-color: rgb(59, 83, 218);
+
+}
+.login-container {
+  height: 92vh;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100%-8vh);
+  margin-top: 8vh;
+}
+
+.inner-login-container {
+  justify-content: center;
+  width: 50vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 5vw;
+}
+
+.login-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 987px) {
+  .ball-1 {
+    width: 275px;
+    height: 275px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -120px;
+    left: -125px;
+    background-color: rgb(248, 68, 68);
+  }
+  .ball-2 {
+    width: 275px;
+    height: 275px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -120px;
+    right: -125px;
+    background-color: rgb(248, 68, 233);
+  }
+  .ball-3 {
+    width: 275px;
+    height: 275px;
+    border-radius: 50%;
+    position: absolute;
+    top: -120px;
+    left: -125px;
+    background-color: rgb(68, 248, 92);
+  }
+  .ball-4 {
+    width: 275px;
+    height: 275px;
+    border-radius: 50%;
+    position: absolute;
+    top: -120px;
+    right: -125px;
+    background-color: rgb(59, 83, 218);
+  }
 }

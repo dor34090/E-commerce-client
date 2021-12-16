@@ -5,7 +5,6 @@ import propTypes from "prop-types";
 
 const Input = ({type, name, placeholder, value, onChange, style}) =>{
     return (
-        <div>
         <div className="form-group">
             <input type= {type}
             placeholder={placeholder}
@@ -13,7 +12,6 @@ const Input = ({type, name, placeholder, value, onChange, style}) =>{
             value= {value}
             onChange={onChange}
             style={style}/>
-        </div>
         </div>
     )
 }

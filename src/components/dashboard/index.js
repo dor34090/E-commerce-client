@@ -55,7 +55,7 @@ class Dashboard extends Component {
 
     return (
       
-      <div>
+      <div className="wrapper-container">
         
         <div id="wrapper">
           

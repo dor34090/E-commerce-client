@@ -1,56 +1,53 @@
-import React, {Component} from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {getInstructorProducts} from "../../../actions/productsAction";
+import { getInstructorProducts } from "../../../actions/productsAction";
 import Product from "../../general/Product";
 import { decodeUser } from "../../../util";
 
-class Products extends Component{
+const Products = (props) => {
+  const [state, setState] = useState({ merchantProducts: [] });
 
-    constructor(props){
-        super(props);
-        this.state={
-            merchantProducts:[]
-        } 
+  useEffect(() => {
+    //setting the next props as an array of the user's products
+    props.getInstructorProducts(decodeUser().user.id);
+  }, []);
+
+  useEffect(() => {
+    if (props && props.products && props.products.products.length > 0) {
+      //retreiving that array
+      const merchantProducts = props.products.products;
+      setState({ merchantProducts });
     }
+  }, [props]);
 
-    componentDidMount(){
-        //setting the next props as an array of the user's products
-        this.props.getInstructorProducts(decodeUser().user.id);
-    }
+  const productDetails = (product) => {
+    return (
+      <ul>
+        <li>${product.price}</li>
+        <li>Stock:{product.quantity}</li>
+      </ul>
+    );
+  };
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps&&nextProps.products&& nextProps.products.products.length > 0)
-        {
-            //retreiving that array
-            const merchantProducts= nextProps.products.products;
-            this.setState({merchantProducts});
-        }
-        
-    }
+  const { merchantProducts } = state;
+  return (
+    <div className="row">
+      {merchantProducts.map((product, index) => (
+        <Product
+          product={product}
+          description={productDetails(product)}
+          buttonName="Add Images"
+          buttonLink={`/dashboard/products/${product._id}/addImages`}
+          thumbnail={product.thumbnail}
+          showBtn={true}
+        />
+      ))}
+    </div>
+  );
+};
 
-    productDetails = (product)=>{
-        return(
-            <ul>
-                <li>${product.price}</li>
-                <li>Stock:{product.quantity}</li>
-            </ul>
-        )
-    }
-
-    render(){
-        const {merchantProducts} = this.state;
-        return( <div className="row">
-             {merchantProducts.map((product, index) =>(
-                <Product product={product} description={this.productDetails(product)} buttonName="Add Images" buttonLink={`/dashboard/products/${product._id}/addImages`} thumbnail={product.thumbnail} showBtn={true}/>
-             ))}
-
-        </div>
-        );
-    }
-}
-
-const mapStateToProps=(state)=>({
-    products: state.products,
+const mapStateToProps = (state) => ({
+  products: state.products,
 });
 
-export default connect(mapStateToProps, {getInstructorProducts})(Products);
+export default connect(mapStateToProps, { getInstructorProducts })(Products);

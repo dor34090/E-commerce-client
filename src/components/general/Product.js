@@ -43,7 +43,7 @@ const Product = ({showBtn, product, description, link,buttonName, buttonLink, th
 
 Product.propTypes={
     product: propTypes.object.isRequired,
-    description: propTypes.func.isRequired,
+    description: propTypes.object.isRequired,
     buttonName: propTypes.string,
 }
 

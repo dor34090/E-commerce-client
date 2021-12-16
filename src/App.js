@@ -1,16 +1,15 @@
-import React  from "react";
-import {useEffect} from "react";
-import {Provider } from "react-redux";
+import React from "react";
+import { useEffect } from "react";
+import { Provider } from "react-redux";
 import { decodeUser } from "./util";
-import {addToCart} from "./actions/cartActions";
-import {Link, BrowserRouter as Router, Route,Switch } from "react-router-dom";
+import { addToCart } from "./actions/cartActions";
+import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //importing general components
 import ProtectedRoutes from "./components/general/protectedRoutes";
-import './App.css';
+import "./App.css";
 //landing component
 import landing from "./components/landing";
 import ProductDetails from "./components/landing/ProductDetails";
-
 
 import store from "./store";
 import setAuthToken from "./util/setAuthToken";
@@ -31,49 +30,73 @@ import Register from "./components/auth/Register";
 import "antd/dist/antd.css";
 import { setCurrentUser } from "./actions/authActions";
 import Products from "./components/dashboard/components/Products";
+import NavBar from "./components/general/NavBar";
 
-if(localStorage.token){
+if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
 function App(props) {
-  useEffect(() =>{
-    store.dispatch(setCurrentUser())
-  }, [])
+  useEffect(() => {
+    store.dispatch(setCurrentUser());
+  }, []);
   const grabProductsFromStorage = () => {
-      const userId = decodeUser().user.id;
-      const cartProducts = JSON.parse(localStorage.getItem("products"))
-      //the context is what we send to the backend
-      //the backend expects for a cart at least products and a user's id
-      const context = {products: cartProducts, userId}
-      store.dispatch(addToCart(context));
-      localStorage.removeItem("products");
-      //resetting the local storage after we added the products to the user's cart
-  }
-  if(localStorage.getItem("token")&& localStorage.getItem("products")){
-      grabProductsFromStorage()
+    const userId = decodeUser().user.id;
+    const cartProducts = JSON.parse(localStorage.getItem("products"));
+    //the context is what we send to the backend
+    //the backend expects for a cart at least products and a user's id
+    const context = { products: cartProducts, userId };
+    store.dispatch(addToCart(context));
+    localStorage.removeItem("products");
+    //resetting the local storage after we added the products to the user's cart
+  };
+  if (localStorage.getItem("token") && localStorage.getItem("products")) {
+    grabProductsFromStorage();
   }
   return (
     //now the app is interacting with everything in the store.js
     <Provider store={store}>
-    <Router>
-    <div className="App">
+      <Router>
+        <NavBar props={{ ...props }} />
 
-      <Route exact path="/" component= {landing} />
-      <Route exact path="/products/:id" component= {ProductDetails} />
-      <Switch>
-      <ProtectedRoutes exact path="/dashboard" component = {()=>(<Dashboard {...props} nestedRoute={Home}/>)} />
-      <ProtectedRoutes exact path="/dashboard/addProduct" component = {()=>(<Dashboard {...props} nestedRoute={AddProduct}/>)} />
-      <ProtectedRoutes exact path="/dashboard/products/:id/addImages" component = {()=>(<Dashboard {...props} nestedRoute={AddImages}/>)} />
-      <ProtectedRoutes exact path="/dashboard/products" component = {()=>(<Dashboard {...props} nestedRoute={Products}/>)} />
-      <ProtectedRoutes exact path="/dashboard/profile" component = {()=>(<Dashboard {...props} nestedRoute={Profile}/>)} />
-      <ProtectedRoutes exact path="/dashboard/addProfile" component = {()=>(<Dashboard {...props} nestedRoute={AddProfile}/>)} />
-      <ProtectedRoutes exact path="/cart" component={Cart}/>
-      <Route exact path="/register" component= {Register}/>
-      <Route exact path="/login" component= {Login}/>
-      </Switch>
-    </div>
-    </Router>
+        <Route exact path="/" component={landing} />
+        <Route exact path="/products/:id" component={ProductDetails} />
+        <Switch>
+          <ProtectedRoutes
+            exact
+            path="/dashboard"
+            component={() => <Dashboard {...props} nestedRoute={Home} />}
+          />
+          <ProtectedRoutes
+            exact
+            path="/dashboard/addProduct"
+            component={() => <Dashboard {...props} nestedRoute={AddProduct} />}
+          />
+          <ProtectedRoutes
+            exact
+            path="/dashboard/products/:id/addImages"
+            component={() => <Dashboard {...props} nestedRoute={AddImages} />}
+          />
+          <ProtectedRoutes
+            exact
+            path="/dashboard/products"
+            component={() => <Dashboard {...props} nestedRoute={Products} />}
+          />
+          <ProtectedRoutes
+            exact
+            path="/dashboard/profile"
+            component={() => <Dashboard {...props} nestedRoute={Profile} />}
+          />
+          <ProtectedRoutes
+            exact
+            path="/dashboard/addProfile"
+            component={() => <Dashboard {...props} nestedRoute={AddProfile} />}
+          />
+          <ProtectedRoutes exact path="/cart" component={Cart} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+        </Switch>
+      </Router>
     </Provider>
   );
 }

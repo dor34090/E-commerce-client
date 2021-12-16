@@ -56,16 +56,21 @@ class Login extends Component {
     }
 
     onChange(e){
-        console.log(e)
         this.setState({[e.target.name]: e.target.value});
-    };
-onSubmit(e){
-    const {email, password} = this.state
-    const user = {
-        email, password
-    };
-    this.props.login(user);
-}
+    }
+    onSubmit(e){
+        const {email, password} = this.state
+        const user = {
+            email, password
+        };
+        this.props.login(user);
+    }
+
+    detectEnter = (e) => {
+        if(e.keyCode === 13) {
+            this.onSubmit()
+        }
+    }
 
 render(){
     const search = this.props.location.search ;
@@ -76,23 +81,32 @@ render(){
     //if not, then we know they weren't even executed
     const hasRedirect = redirect.length > 0 && search.includes("redirect");
     return(
-        <div>
-            <NavBar />
         
-    <div className="container">
-        <h1 className="large text-primary">Sign in</h1>
-        <p className="lead"><i className="fas fa-user"></i>Sign into your account</p>
-        <div className="form">
-                    <Input name="email" type="email" placeholder="Enter Email" value={this.state.email} onChange={this.onChange}/>
-                </div>
-                <div className="form">
-                    <Input name="password" type="password" placeholder="Enter Password" value={this.state.password} onChange={this.onChange}/>
-                </div>
+    <div className="login-container" onKeyDown={(e) => this.detectEnter(e)}>
+        <div className="inner-login-container">
+            <div className="sign-in-header-text">
+                <h1 className="large text-primary">Sign in</h1>
+                <p className="lead"><i className="fas fa-user"></i>Sign into your account</p>
+            </div>
+
+            <div className="form">
+                <Input name="email" type="email" placeholder="Enter Email" value={this.state.email} onChange={this.onChange}/>
+
+                <Input name="password" type="password" placeholder="Enter Password" value={this.state.password} onChange={this.onChange}/>
+            </div>
+
+            <div className="login-actions">
                 <button className="btn btn-primary" onClick={this.onSubmit}>Sign in!</button>
-                {/* if the user has a redirect (i.e coming from an attempt to create a cart)*/}
-                {/* then the params should be passed to the register  */}
                 <p className="my-1">No account? <Link to={`/register?role=customer${hasRedirect ? "&redirect=" + redirect : ""}`}>Sign up!</Link></p>
-    </div>
+            </div>
+        </div>
+
+
+
+        <div className="ball-1"> </div>
+        <div className="ball-2"> </div>
+        <div className="ball-3"> </div>
+        <div className="ball-4"> </div>
     </div>)
 }}
 
