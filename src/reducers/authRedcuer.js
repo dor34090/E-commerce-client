@@ -10,7 +10,7 @@ import {
 } from "../actions/types";
 import { isEmpty } from "lodash";
 
-//setting a default state
+//setting the default state
 const initialState = {
   isAuthenticated: localStorage.getItem("token") ? true : false,
   token: localStorage.getItem("token"),
