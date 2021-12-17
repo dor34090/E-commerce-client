@@ -57,7 +57,7 @@ function App(props) {
     //now the app is interacting with everything in the store.js
     <Provider store={store}>
       <Router>
-        <NavBar props={{ ...props }} />
+        <NavBar />
 
         <Route exact path="/" component={landing} />
         <Route exact path="/products/:id" component={ProductDetails} />
