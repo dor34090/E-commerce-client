@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getInstructorProducts } from "../../../actions/productsAction";
 import Product from "../../general/Product";
@@ -31,17 +32,22 @@ const Products = (props) => {
 
   const { merchantProducts } = state;
   return (
-    <div className="row">
-      {merchantProducts.map((product, index) => (
-        <Product
-          product={product}
-          description={productDetails(product)}
-          buttonName="Add Images"
-          buttonLink={`/dashboard/products/${product._id}/addImages`}
-          thumbnail={product.thumbnail}
-          showBtn={true}
-        />
-      ))}
+    <div className="dash-products">
+      <div className="row">
+        {merchantProducts.map((product, index) => (
+          <Product
+            product={product}
+            description={productDetails(product)}
+            buttonName="Add Images"
+            buttonLink={`/dashboard/products/${product._id}/addImages`}
+            thumbnail={product.thumbnail}
+            showBtn={true}
+          />
+        ))}
+      </div>
+      <Link to="/dashboard/addProduct" className="btn btn-primary" id="plus">
+        <i class="fas fa-plus"></i>
+      </Link>
     </div>
   );
 };

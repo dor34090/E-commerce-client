@@ -45,7 +45,8 @@ const Register = (props) => {
           localStorage.removeItem("products");
         }
 
-        props.history.push(split);
+        message.success("Sign up successful");
+        setTimeout(() => props.history.push(split, 3000));
       } else {
         message.success("Sign up successful");
         setTimeout(() => props.history.push("/", 3000));
@@ -79,8 +80,7 @@ const Register = (props) => {
 
   return (
     <div>
-      <NavBar />
-      <div className="container">
+      <div className="register-container">
         <h1 className="large text-primary">Register</h1>
         <p className="lead">
           <i className="fas fa-user"></i>Create a new account
@@ -125,6 +125,10 @@ const Register = (props) => {
           Register now!
         </button>
       </div>
+      <div className="ball-1"> </div>
+      <div className="ball-2"> </div>
+      <div className="ball-3"> </div>
+      <div className="ball-4"> </div>
     </div>
   );
 };

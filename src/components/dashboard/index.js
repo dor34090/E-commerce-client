@@ -74,15 +74,6 @@ const Dashboard = (props) => {
               <span>Merchant Store</span>
             </Link>
           </li>
-
-          <hr className="sidebar-divider" />
-
-          <li className="nav-item">
-            <Link className="nav-link" to="/dashboard/addProduct">
-              <i className="fas fa-fw fa-chart-area"></i>
-              <span>Add A Product</span>
-            </Link>
-          </li>
           <hr className="sidebar-divider " />
           <li className="nav-item">
             <Link className="nav-link" to="/dashboard/products">

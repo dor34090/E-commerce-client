@@ -43,8 +43,7 @@ const Login = (props) => {
           localStorage.removeItem("products");
         }
         message.success("Sign in successful");
-        setTimeout(() => props.history.push("/", 3000));
-        props.history.push(split);
+        setTimeout(() => props.history.push(split, 3000));
       } else {
         message.success("Sign in successful");
         setTimeout(() => props.history.push("/", 3000));
