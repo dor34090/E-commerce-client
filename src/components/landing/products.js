@@ -30,18 +30,19 @@ const Products = (props) => {
   };
   const { products } = state;
   return (
-    <div className="container-flex">
-      <div className="row" style={{ flexFlow: "column-wrap" }}>
-        {products.map((products, index) => (
-          <Product
-            key={products._id}
-            product={products}
-            description={productDetails(products)}
-            link={`products/${products._id}`}
-            thumbnail={products.thumbnail}
-          />
-        ))}
-      </div>
+    <div className="container-grid">
+      {/* <div style={{ flexFlow: "column-wrap" }}> */}
+
+      {products.map((products, index) => (
+        <Product
+          key={products._id}
+          product={products}
+          description={productDetails(products)}
+          link={`products/${products._id}`}
+          thumbnail={products.thumbnail}
+          style={{ paddingBottom: "1rem" }}
+        />
+      ))}
     </div>
   );
 };

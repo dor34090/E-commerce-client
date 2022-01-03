@@ -41,8 +41,9 @@ const Login = (props) => {
           const context = { products: products, userId };
           props.addToCart(context);
           localStorage.removeItem("products");
-          console.log("1");
         }
+        message.success("Sign in successful");
+        setTimeout(() => props.history.push("/", 3000));
         props.history.push(split);
       } else {
         message.success("Sign in successful");

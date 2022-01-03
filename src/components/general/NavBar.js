@@ -81,7 +81,7 @@ const NavBar = (
         </Link>
       </li>
       <li>
-        <Link to="/dashboard">Dashboard </Link>
+        <Link to="/dashboard?redirect=/dashboard">Dashboard </Link>
       </li>
       <li>
         <Link to="/register?role=merchant">Merchants </Link>
