@@ -4435,11 +4435,13 @@ input[type="button"].btn-block {
 }
 
 .navbar-nav {
+  display: none;
+  transition: transform 350ms;
+  transform: translateX(-100%);
+}
+
+.open {
   display: flex;
-  flex-direction: column;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
 }
 
 .navbar-nav .nav-link {
@@ -10420,7 +10422,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 700px) {
   .text-md-left {
     text-align: left !important;
   }
@@ -10431,6 +10433,14 @@ button.bg-dark:focus {
 
   .text-md-center {
     text-align: center !important;
+  }
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    transform: translateX(0);
   }
 }
 
@@ -10734,6 +10744,7 @@ a:focus {
 
 #wrapper {
   display: flex;
+  height: 92vh;
 }
 
 #wrapper #content-wrapper {

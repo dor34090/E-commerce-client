@@ -15,7 +15,24 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     activeNav();
+    sideBarToggle();
   }, []);
+
+  const sideBarToggle = () => {
+    jQuery(`#sidebarToggleTop`).on("click", function () {
+      if (jQuery(`#accordionSidebar`).hasClass("open")) {
+        setTimeout(() => {
+          jQuery(`#accordionSidebar`).removeClass("open");
+        }, 200);
+        jQuery(`#accordionSidebar`).css("transform", "translateX(-100%)");
+      } else {
+        jQuery(`#accordionSidebar`).addClass("open");
+        setTimeout(() => {
+          jQuery(`#accordionSidebar`).css("transform", "translateX(0)");
+        }, 200);
+      }
+    });
+  };
 
   const activeNav = () => {
     const pathname = window.location.pathname;
