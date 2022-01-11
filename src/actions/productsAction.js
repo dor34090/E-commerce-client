@@ -8,7 +8,9 @@ import {
 import { getServer } from "../util";
 
 export const getFilteredProducts = (val, products) => async (dispatch) => {
-  let filtered = products.filter((product) => product.category === val);
+  let filtered = products.filter((product) =>
+    product.name.toLowerCase().startsWith(val)
+  );
   try {
     dispatch({
       type: GET_FILTERED_PRODUCTS,

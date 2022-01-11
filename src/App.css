@@ -33,7 +33,6 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
   color: #333;
 }
 
@@ -69,13 +68,26 @@ img {
 .container-grid {
   display: grid;
   justify-items: center;
-  /* grid-template-columns: repeat(4, 25%); */
+  background-image: url("/assets/images/shopiing.jpg");
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
-.container-grid #filter {
+#filter {
   grid-row-start: 1;
   grid-column: 1/-1;
+  width: 100%;
+}
+
+#filter Input {
+  margin-top: 0.3rem;
+  /* margin-left: 30%; */
+  width: 40%;
+}
+
+#filter i {
+  margin-left: 40%;
+  width: 1rem;
+  transform: translateY(0.625rem);
 }
 
 .wrapper-container {
@@ -427,6 +439,14 @@ button {
     padding-left: 1rem;
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fill, 45vw);
+  }
+
+  #filter Input {
+    width: 100% !important;
+  }
+
+  #filter i {
+    margin-left: 30%;
   }
 
   .hide-on-mobile {
