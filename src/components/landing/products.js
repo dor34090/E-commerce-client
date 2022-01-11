@@ -4,20 +4,18 @@ import { getProducts } from "../../actions/productsAction";
 import { combineReducers } from "redux";
 import { Card } from "antd";
 import Product from "../general/Product";
+import Filter from "../general/Filter";
 const { Meta } = Card;
 
 const Products = (props) => {
-  const [state, setState] = useState({ products: [] });
+  const [state, setState] = useState({ _products: [] });
+  const {
+    getProducts,
+    products: { products: products, filtered: filtered },
+  } = props;
 
   useEffect(() => {
-    if (props && props.products.products) {
-      const products = props.products.products;
-      setState({ products });
-    }
-  }, [props]);
-
-  useEffect(() => {
-    props.getProducts();
+    getProducts();
   }, []);
 
   const productDetails = (product) => {
@@ -28,18 +26,23 @@ const Products = (props) => {
       </ul>
     );
   };
-  const { products } = state;
+
+  let showProducts = products;
+  if (filtered.length !== 0) showProducts = filtered;
+
   return (
     <div className="container-grid">
       {/* <div style={{ flexFlow: "column-wrap" }}> */}
 
-      {products.map((products, index) => (
+      <Filter initialProducts={products} />
+
+      {showProducts.map((showProducts, index) => (
         <Product
-          key={products._id}
-          product={products}
-          description={productDetails(products)}
+          key={showProducts._id}
+          product={showProducts}
+          description={productDetails(showProducts)}
           link={`products/${products._id}`}
-          thumbnail={products.thumbnail}
+          thumbnail={showProducts.thumbnail}
           style={{ paddingBottom: "1rem" }}
         />
       ))}

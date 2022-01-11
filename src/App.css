@@ -73,6 +73,11 @@ img {
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
+.container-grid #filter {
+  grid-row-start: 1;
+  grid-column: 1/-1;
+}
+
 .wrapper-container {
   margin-top: 8vh;
 }

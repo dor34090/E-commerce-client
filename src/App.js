@@ -50,6 +50,7 @@ function App(props) {
     localStorage.removeItem("products");
     //resetting the local storage after we added the products to the user's cart
   };
+
   if (localStorage.getItem("token") && localStorage.getItem("products")) {
     grabProductsFromStorage();
   }
