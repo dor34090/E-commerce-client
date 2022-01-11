@@ -41,7 +41,7 @@ const Products = (props) => {
           key={showProducts._id}
           product={showProducts}
           description={productDetails(showProducts)}
-          link={`products/${products._id}`}
+          link={`products/${showProducts._id}`}
           thumbnail={showProducts.thumbnail}
           style={{ paddingBottom: "1rem" }}
         />
